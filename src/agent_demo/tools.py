@@ -1,9 +1,32 @@
 from datetime import datetime
 
-
-
+from agent_demo.rag import retriever
 
 TOOLS = [
+{
+    "type": "function",
+    "function": {
+        "name": "search_documents",
+        "description": (
+            "Search the company documents for information "
+            "relevant to the user's question."
+        ),
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "query": {
+                    "type": "string",
+                    "description": (
+                        "The information to search for."
+                    ),
+                }
+            },
+            "required": ["query"],
+            "additionalProperties": False,
+        },
+    },
+}
+    ,
     {
         "type": "function",
         "function": {
@@ -55,6 +78,16 @@ TOOLS = [
 ]
 
 
+
+# RAQ retriever tool
+def search_documents(query: str) -> str:
+    results = retriever.retrieve(query, top_k=2)
+
+    return "\n\n".join(
+        result["document"]
+        for result in results
+    )
+
 def calculator(expression: str) -> str:
     """
     Calculate a mathematical expression.
@@ -94,6 +127,7 @@ def get_user(user_id: int) -> str:
 
 
 TOOL_FUNCTIONS = {
+    "search_documents": search_documents,
     "calculator": calculator,
     "get_current_time": get_current_time,
     "get_user": get_user,
