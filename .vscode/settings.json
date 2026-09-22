@@ -1,0 +1,13 @@
+{
+    "editor.fontSize": 12,
+    "editor.fontFamily": "'JetBrains Mono', Consolas, 'Courier New', monospace",
+    "debug.console.collapseIdenticalLines": true,
+    "python.analysis.typeCheckingMode": "off",
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportUnknownVariableType": "none",
+        "reportUnknownMemberType": "none",
+        "reportUnknownArgumentType": "none",
+        "reportUnknownParameterType": "none",
+        "reportUnknownResultType": "none"
+    }
+}

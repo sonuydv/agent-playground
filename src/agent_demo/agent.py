@@ -14,6 +14,13 @@ def run_agent(user_input:str) -> str:
     # Message history
     messages = [
         {
+            "role":"system",
+            "content":"You are a helpful assistant that can call tools to answer user questions."
+            " You have access to tools as well as the ability to answer questions directly. If you need to use a tool,"
+            " call it with the appropriate parameters. If you can answer the question without using a tool."
+            " you are companies internal knowledge base agent. you can search any company knowledge using search documents tool."
+        },
+        {
             "role":"user",
             "content":user_input
         }
@@ -27,6 +34,8 @@ def run_agent(user_input:str) -> str:
             messages=messages,
             tools=TOOLS
         )
+
+        print(f"\n {response}")
 
         assistant_message = response.choices[0].message
         # Add the llm response to our conversation

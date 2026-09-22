@@ -38,8 +38,9 @@ Question:
             {
                 "role": "user",
                 "content": prompt,
-            },
+            }
         ],
+        extra_body={"think":False}
     )
 
     return response.choices[0].message.content
